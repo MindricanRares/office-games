@@ -6,11 +6,12 @@ const initialState={
         {
 
         }
-    ]    
+    ],
+    currentTime:''    
 };
 
+//TODO: Refactor it
 let calculateWinner= (entries,arrivalTime)=>{
-    debugger;
     let arrivalDate=createDate(arrivalTime);
     let entriesWithDate=[]
     entries.forEach(function(entry){
@@ -38,7 +39,7 @@ let calculateWinner= (entries,arrivalTime)=>{
     }
 }
 
-
+//TODO: refactor it
 let createDate = (time) =>{
     const today=new Date();
     const todaysYear=today.getFullYear();
@@ -53,7 +54,6 @@ let createDate = (time) =>{
 export default function (state=initialState,action) {
     switch (action.type) {
         case 'NEW_ENTRY':
-            debugger;
             return{
                 ...state,
                 entries:[...state.entries,{
@@ -72,7 +72,15 @@ export default function (state=initialState,action) {
                     time:winner.time,
                     actualTime:action.payload
                    
-                }]}
+                }]};
+        case 'CHECK_GAME':
+            const currentTime=new Date().getHours()+":"+new Date().getMinutes()
+            console.log(currentTime);
+            return {
+                ...state,
+                currentTime:currentTime
+            };
+                
         default:
         return state;
     }

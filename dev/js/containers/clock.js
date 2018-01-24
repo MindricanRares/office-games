@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {checkIfGameLost} from '../actions/check-if-game-lost';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 
 class Clock extends React.Component {
     constructor(props) {
@@ -9,7 +12,7 @@ class Clock extends React.Component {
     componentDidMount() {
       this.timerID = setInterval(
         () => this.tick(),
-        1000
+        6000
       );
     }
   
@@ -18,6 +21,8 @@ class Clock extends React.Component {
     }
   
     tick() {
+      this.props.checkIfGameLost();
+      
       this.setState({
         date: new Date()
       });
@@ -33,4 +38,9 @@ class Clock extends React.Component {
   }
 
 
-export default Clock;
+
+function matchDispatchToProps(dispatch){
+  return bindActionCreators({checkIfGameLost: checkIfGameLost}, dispatch);
+}
+
+export default connect(null,matchDispatchToProps)(Clock);

@@ -6,6 +6,14 @@ import {bindActionCreators} from 'redux';
 
 class FinishForm extends React.Component{
 
+    handleRaduArrivedBtn=()=>{
+        if (this.props.entriesList.entries.length!=0) {
+            this.props.raduArrived();             
+        }else{
+            alert('There are no participants yet');
+        }
+    }
+    
     render() {
         if(this.props.entriesList.todaysWinner.length!=1){
             return(
@@ -17,7 +25,7 @@ class FinishForm extends React.Component{
         }
         return (
             <div>
-                <button className='btn btn-primary btn-lg radu-arrived-btn' onClick={this.props.raduArrived}>Radu arrived</button>
+                <button className='btn btn-primary btn-lg radu-arrived-btn' onClick={this.handleRaduArrivedBtn}>Radu arrived</button>
             </div>
         );
     }

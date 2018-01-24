@@ -8,14 +8,16 @@ class NewEntryForm extends React.Component{
     constructor() {
         super();
         this.state = {
-            formValues: {}
+            formValues: {
+                name:'',
+                time:''
+            }
         }
         this.handleChange= this.handleChange.bind(this);        
         this.onClickSubmit = this.onClickSubmit.bind(this);
     }
 
     handleChange(event) {
-        debugger;
         this.setState({value: event.target.value});
 
         let formValues = this.state.formValues;
@@ -26,7 +28,6 @@ class NewEntryForm extends React.Component{
 
         this.setState({formValues})
     }
-
 
     onClickSubmit(){
         this.props.newEntry({
@@ -41,10 +42,16 @@ class NewEntryForm extends React.Component{
         })
     }
 
-
-
     render() {
-        //TODO pentru ca nu e in un form nu valideza bine
+
+        if(this.props.entriesList.todaysWinner.length==2){
+            return (
+                <div className="game-over-msg text-center">
+                    <h2>The game is over for today</h2>
+                </div>
+            )
+        }
+
         return (
             <div className="new-entry-form">
             
@@ -58,7 +65,7 @@ class NewEntryForm extends React.Component{
                 <div className="form-group row">
                     <label className="control-label col-sm-2">Time:</label>
                     <div className="col-sm-10">
-                       <input className="form-control" type="time" min="09:00:00" max="11:00:00" onChange={this.handleChange} name="time" value={this.state.formValues["time"]}/>                        
+                       <input className="form-control" type="time"  onChange={this.handleChange} name="time" value={this.state.formValues["time"]}/>                        
                     </div>
 
             </div>
@@ -74,4 +81,10 @@ function matchDispatchToProps(dispatch){
     return bindActionCreators({newEntry: newEntry}, dispatch);
 }
 
-export default connect(null,matchDispatchToProps)(NewEntryForm);
+function mapStateToProps(state){
+    return {
+        entriesList: state.entriesList
+    };
+}
+
+export default connect(mapStateToProps,matchDispatchToProps)(NewEntryForm);
