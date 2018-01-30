@@ -31,8 +31,8 @@ class NewEntryForm extends React.Component{
 
     onClickSubmit(){
         this.props.newEntry({
-            name:this.state.formValues["name"],
-            time:this.state.formValues["time"]
+            name:this.state.formValues.name,
+            time:this.state.formValues.time
         });
         this.setState({
             formValues:{

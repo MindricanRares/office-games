@@ -9,16 +9,28 @@ import createLogger from 'redux-logger';
 import allReducers from './reducers';
 import App from './components/App';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import { PersistGate } from 'redux-persist/lib/integration/react'
+ 
+import configureStore from './configureStore'
+let { store, persistor } = configureStore()
 
-const logger = createLogger();
-const store = createStore(
-    allReducers,
-    applyMiddleware(thunk, promise, logger)
-);
+// const persistConfig = {
+//     key: 'root',
+//     storage: storage,
+//   }
+
+
+// const logger = createLogger();
+// const store = createStore(
+//     allReducers,
+//     applyMiddleware(thunk, promise, logger)
+// );
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <PersistGate loading={null} persistor={persistor}>
+            <App />
+        </PersistGate>
     </Provider>,
     document.getElementById('root')
 );

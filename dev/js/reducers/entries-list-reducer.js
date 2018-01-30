@@ -1,13 +1,13 @@
 const initialState={
     entries:[
-
+        
     ],
     todaysWinner:[
         {
 
         }
     ],
-    currentTime:''    
+    currentTime:'10:30'    
 };
 
 //TODO: Refactor it
@@ -52,15 +52,18 @@ let createDate = (time) =>{
 }
 
 export default function (state=initialState,action) {
+    debugger;
     switch (action.type) {
         case 'NEW_ENTRY':
-            return{
+            debugger;
+            const result={
                 ...state,
                 entries:[...state.entries,{
                     name:action.payload.name,
                     time:action.payload.time
                 }]
             };
+            return result;
         case 'RADU_ARRIVED':
             debugger
             const winner=calculateWinner(state.entries,action.payload)
@@ -81,6 +84,8 @@ export default function (state=initialState,action) {
                 currentTime:currentTime
             };
                 
+        case 'REHYDRATE':
+            return initialState;
         default:
         return state;
     }
