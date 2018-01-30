@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "test":"mocha --reporter progress buildScripts/testSetup.js \"dev/js/**/*.test.js\"",
+    "test:watch":"npm run test -- --watch"
   },
   "license": "ISC",
   "dependencies": {
@@ -15,9 +17,11 @@
     "babel-preset-react": "^6.11.1",
     "babel-register": "^6.9.0",
     "bootstrap": "^4.0.0",
+    "chai": "3.5.0",
     "cross-env": "^1.0.8",
     "css-loader": "^0.23.1",
     "expect": "^1.20.1",
+    "mocha": "3.1.2",
     "node-libs-browser": "^1.0.0",
     "node-sass": "^3.8.0",
     "react": "^15.6.2",

@@ -1,16 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import {createDate} from '../utils';
 
-let createDate = (time) =>{
-    const today=new Date();
-    const todaysYear=today.getFullYear();
-    const todaysMonth=today.getMonth();
-    const todayDay=today.getDay();
-    const entryHour=time.split(':')[0];
-    const entryMin=time.split(':')[1];
-    let day=new Date(todaysYear,todaysMonth,todayDay,entryHour,entryMin);
-    return day;
-}
 class EntriesList extends React.Component{
     
     render() {

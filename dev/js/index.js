@@ -14,18 +14,6 @@ import { PersistGate } from 'redux-persist/lib/integration/react'
 import configureStore from './configureStore'
 let { store, persistor } = configureStore()
 
-// const persistConfig = {
-//     key: 'root',
-//     storage: storage,
-//   }
-
-
-// const logger = createLogger();
-// const store = createStore(
-//     allReducers,
-//     applyMiddleware(thunk, promise, logger)
-// );
-
 ReactDOM.render(
     <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
